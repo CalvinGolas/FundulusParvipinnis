@@ -12,8 +12,14 @@ public class Main {
     // This hashmap will contain the trap entries keyed off of composite with number in each
     Map<String, Integer> trapMap = new HashMap<>();
 
-    BufferedReader reader;
+    extractResultsFromInputCsv(trapMap);
+
+    writeResultsToOutputCsv(trapMap);
+  }
+
+  private static void extractResultsFromInputCsv(Map<String, Integer> trapMap) {
     try {
+      BufferedReader reader;
       // Create csv reader
       reader = Files.newBufferedReader(Paths.get("input.csv"));
 
@@ -34,7 +40,9 @@ public class Main {
       System.out.println("Failed to read input.csv file in repo");
       throw new RuntimeException(e);
     }
+  }
 
+  private static void writeResultsToOutputCsv(Map<String, Integer> trapMap) {
     // now output in new CSV
     try {
       BufferedWriter writer = Files.newBufferedWriter(Paths.get("output.csv"));
